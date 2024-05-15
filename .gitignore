@@ -341,3 +341,4 @@ healthchecksdb
 DowJones\.ProductSettings\.API/logs/
 
 .ionide
+**/.containers
