@@ -12,14 +12,19 @@ namespace Application.UseCase.Produtos
     {
         private readonly IProdutosRepository _produtosRepository;
 
+        public ProdutosUseCase(IProdutosRepository produtosRepository)
+        {
+            _produtosRepository = produtosRepository;
+        }
+
         public Task<Produto> Obter(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Produto>> Listar()
+        public async Task<IEnumerable<Produto>> Listar()
         {
-            throw new NotImplementedException();
+            return await _produtosRepository.ListarProdutos();
         }
 
         public async Task<Produto> Cadastrar(Produto produto)

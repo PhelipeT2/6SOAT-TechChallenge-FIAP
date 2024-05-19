@@ -25,7 +25,8 @@ namespace Infra.Data.Repositories
 
         public Task<IEnumerable<Produto>> ListarProdutos()
         {
-            throw new NotImplementedException();
+            //_context.Produto.ToList();
+            return Task.FromResult(_context.Produto.AsEnumerable());
         }
 
         public async Task<Produto> InserirProdutos(Produto produto)
@@ -42,6 +43,11 @@ namespace Infra.Data.Repositories
         }
 
         public Task ExcluirProdutos(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Produto> listarPorCategoria(Categoria idCategoria)
         {
             throw new NotImplementedException();
         }

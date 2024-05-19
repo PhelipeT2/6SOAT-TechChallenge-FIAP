@@ -14,5 +14,6 @@ namespace Domain.Repositories
         Task<Produto> InserirProdutos(Produto produto);
         Task<Produto> AtualizarProdutos(Produto produto);
         Task ExcluirProdutos(int id);
+        Task<Produto> listarPorCategoria(Categoria idCategoria);
     }
 }
