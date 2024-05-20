@@ -10,7 +10,7 @@ namespace Application.UseCase.Produtos
     public interface IProdutosUseCase
     {
         Task<Produto> Obter(int id);
-        Task<IEnumerable<Produto>> Listar();
+        Task<List<Produto>> Listar();
         Task<Produto> Cadastrar(Produto produto);
         Task<Produto> Atualizar(Produto produto);
         Task Excluir(int id);

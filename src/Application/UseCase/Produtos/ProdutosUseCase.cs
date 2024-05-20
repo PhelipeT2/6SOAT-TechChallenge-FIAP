@@ -22,7 +22,7 @@ namespace Application.UseCase.Produtos
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Produto>> Listar()
+        public async Task<List<Produto>> Listar()
         {
             return await _produtosRepository.ListarProdutos();
         }

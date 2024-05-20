@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,10 +24,10 @@ namespace Infra.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Produto>> ListarProdutos()
+        public async Task<List<Produto>> ListarProdutos()
         {
-            //_context.Produto.ToList();
-            return Task.FromResult(_context.Produto.AsEnumerable());
+            return _context.Produto.ToList();
+             
         }
 
         public async Task<Produto> InserirProdutos(Produto produto)
