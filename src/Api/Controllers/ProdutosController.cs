@@ -18,21 +18,21 @@ namespace Api.Controllers
 
         // GET: api/<ProdutosController>
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> ListarProdutos()
         {
             var produtos = await _produtosUseCase.Listar();
 
             return Ok(produtos);
         }
 
-        //// GET api/<ProdutosController>/5
-        //[HttpGet("{id}")]
-        //public string GetById(int id)
-        //{
-        //    //var produtos = await _produtosUseCase.ObterProdutos(id);
+        // GET api/<ProdutosController>/5
+        [HttpGet("{id}")]
+        public async Task<IActionResult> ListarProdutosId(long id)
+        {
+            var produtos = await _produtosUseCase.Obter(id);
 
-        //    return Ok(produtos);
-        //}
+            return Ok(produtos);
+        }
 
         // GET api/<ProdutosController>/5
         [HttpGet("categoria-produtos/{id}")]
@@ -41,27 +41,31 @@ namespace Api.Controllers
             return "value";
         }
 
-        // POST api/<ProdutosController>
-        //[HttpPost]
-        //public async Task<IActionResult> Cadastrar(Produto produto)
-        //{
-        //    await _produtosUseCase.InserirProdutos(produto);
+        //POST api/<ProdutosController>
+        [HttpPost]
+        public async Task<IActionResult> Cadastrar(Produto produto)
+        {
+            await _produtosUseCase.Cadastrar(produto);
 
-        //    return Ok();
-        //}
+            return Ok();
+        }
 
         // PUT api/<ProdutosController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> Patch([FromBody] Produto produto)
         {
+            await _produtosUseCase.Atualizar(produto);
 
+            return Ok();
         }
 
         // DELETE api/<ProdutosController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Remover(long id)
         {
+            await _produtosUseCase.Excluir(id);
 
+            return Ok();
         }
     }
 }

@@ -9,10 +9,10 @@ namespace Application.UseCase.Produtos
 {
     public interface IProdutosUseCase
     {
-        Task<Produto> Obter(int id);
+        Task<Produto> Obter(long id);
         Task<List<Produto>> Listar();
         Task<Produto> Cadastrar(Produto produto);
         Task<Produto> Atualizar(Produto produto);
-        Task Excluir(int id);
+        Task Excluir(long id);
     }
 }

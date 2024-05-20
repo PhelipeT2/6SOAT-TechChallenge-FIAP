@@ -17,9 +17,9 @@ namespace Application.UseCase.Produtos
             _produtosRepository = produtosRepository;
         }
 
-        public Task<Produto> Obter(int id)
+        public async Task<Produto> Obter(long id)
         {
-            throw new NotImplementedException();
+            return await _produtosRepository.ObterProdutoPorId(id);
         }
 
         public async Task<List<Produto>> Listar()
@@ -32,14 +32,14 @@ namespace Application.UseCase.Produtos
             return await _produtosRepository.InserirProdutos(produto);
         }
 
-        public Task<Produto> Atualizar(Produto produto)
+        public async Task<Produto> Atualizar(Produto produto)
         {
-            throw new NotImplementedException();
+             return await _produtosRepository.AtualizarProdutos(produto);
         }
 
-        public Task Excluir(int id)
+        public async Task Excluir(long id)
         {
-            throw new NotImplementedException();
+            await _produtosRepository.ExcluirProdutos(id);
         }
     }
 }

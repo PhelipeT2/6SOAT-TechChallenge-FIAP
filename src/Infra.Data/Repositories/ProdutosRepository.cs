@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Entities;
 using Domain.Repositories;
+using Domain.ValueObjects;
 using Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infra.Data.Repositories
 {
@@ -19,10 +22,7 @@ namespace Infra.Data.Repositories
             _context = context;
         }
 
-        public Task<Produto> ObterProdutos(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<Produto> ObterProdutoPorId(long id) => await _context.Produto.FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task<List<Produto>> ListarProdutos()
         {
@@ -32,25 +32,32 @@ namespace Infra.Data.Repositories
 
         public async Task<Produto> InserirProdutos(Produto produto)
         {
-            //throw new NotImplementedException();
+            if (produto is null)
+            {
+                throw new ArgumentNullException(nameof(produto));
+            }
             _context.Produto.Add(produto);
             await _context.SaveChangesAsync();
             return produto;
         }
 
-        public Task<Produto> AtualizarProdutos(Produto produto)
+        public async Task<Produto> AtualizarProdutos(Produto produto)
         {
-            throw new NotImplementedException();
+            _context.Produto.Update(_context.Produto.Find(produto.Id));
+            await _context.SaveChangesAsync();
+            return produto;
         }
 
-        public Task ExcluirProdutos(int id)
+        public async Task ExcluirProdutos(long id)
         {
-            throw new NotImplementedException();
+             var  teste = _context.Produto.Remove(_context.Produto.Find(id));
+            await _context.SaveChangesAsync();
+           
         }
 
         public Task<Produto> listarPorCategoria(Categoria idCategoria)
         {
             throw new NotImplementedException();
-        }
+        }   
     }
 }
