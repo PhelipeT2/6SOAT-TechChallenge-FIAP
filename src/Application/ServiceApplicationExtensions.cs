@@ -8,6 +8,8 @@ namespace Application
         public static IServiceCollection AddApplicationService(this IServiceCollection services)
         {
             services.AddTransient<IClienteUseCase, ClienteUseCase>();
+            services.AddTransient<IPedidoUseCase, PedidoUseCase>();
+
             return services;
         }
     }
