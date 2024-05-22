@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 
-namespace Domain.Ports
+namespace Domain.Repositories
 {
     public interface IClienteRepository
     {
