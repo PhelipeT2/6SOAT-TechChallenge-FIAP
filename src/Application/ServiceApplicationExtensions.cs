@@ -1,4 +1,5 @@
 ﻿using Application.UseCase;
+using Application.UseCase.Produtos;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application
@@ -7,9 +8,8 @@ namespace Application
     {
         public static IServiceCollection AddApplicationService(this IServiceCollection services)
         {
-            services.AddTransient<IClienteUseCase, ClienteUseCase>();
-            services.AddTransient<IPedidoUseCase, PedidoUseCase>();
-
+            services.AddScoped<IClienteUseCase, ClienteUseCase>();
+            services.AddScoped<IProdutosUseCase, ProdutosUseCase>();
             return services;
         }
     }
