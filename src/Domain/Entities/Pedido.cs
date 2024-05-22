@@ -6,7 +6,7 @@ namespace Domain.Entities
     {
         public long Id { get; set; }
         public DateTime DataCriacao { get; set; }
-        public Cliente Cliente { get; set; }
+        public Cliente? Cliente { get; set; }
         public long? ClienteId { get; set;}
         public decimal ValorTotal { get; set; }
         public StatusEnum Status { get; set; }
