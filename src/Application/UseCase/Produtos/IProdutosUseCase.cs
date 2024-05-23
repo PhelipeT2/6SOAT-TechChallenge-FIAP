@@ -11,6 +11,7 @@ namespace Application.UseCase.Produtos
     {
         Task<Produto> Obter(long id);
         Task<List<Produto>> Listar();
+        Task<List<Produto>> ListarPorCategoria(long idCategoria);
         Task<Produto> Cadastrar(Produto produto);
         Task<Produto> Atualizar(Produto produto);
         Task Excluir(long id);

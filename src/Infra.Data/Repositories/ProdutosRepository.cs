@@ -26,7 +26,7 @@ namespace Infra.Data.Repositories
 
         public async Task<List<Produto>> ListarProdutos()
         {
-            return _context.Produto.ToList();
+            return _context.Produto.Include(x => x.Categoria).ToList();
              
         }
 
@@ -36,6 +36,8 @@ namespace Infra.Data.Repositories
             {
                 throw new ArgumentNullException(nameof(produto));
             }
+            var categoria = await _context.Categoria.FirstOrDefaultAsync(x => x.Id == produto.Categoria.Id);
+            produto.Categoria = categoria;
             _context.Produto.Add(produto);
             await _context.SaveChangesAsync();
             return produto;
@@ -43,21 +45,26 @@ namespace Infra.Data.Repositories
 
         public async Task<Produto> AtualizarProdutos(Produto produto)
         {
-            _context.Produto.Update(_context.Produto.Find(produto.Id));
+            var produtoDb = _context.Produto.Find(produto.Id);
+            produtoDb.Valor = 
+
+                
+            _context.Produto.Update(produtoDb);
             await _context.SaveChangesAsync();
             return produto;
         }
 
         public async Task ExcluirProdutos(long id)
         {
-             var  teste = _context.Produto.Remove(_context.Produto.Find(id));
+             _context.Produto.Remove(_context.Produto.Find(id));
             await _context.SaveChangesAsync();
            
         }
 
-        public Task<Produto> listarPorCategoria(Categoria idCategoria)
+        public async Task<List<Produto>> ListarPorCategoria(long idCategoria)
         {
-            throw new NotImplementedException();
-        }   
+            var produtosCategoria =  _context.Produto.Include(x => x.Categoria).Where(x => x.Categoria.Id == idCategoria);
+            return produtosCategoria.ToList();
+        }
     }
 }
