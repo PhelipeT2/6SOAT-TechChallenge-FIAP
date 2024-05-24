@@ -12,6 +12,7 @@ namespace Application
         {
             services.AddTransient<IClienteUseCase, ClienteUseCase>();
             services.AddTransient<IPedidoUseCase, PedidoUseCase>();
+            services.AddScoped<IProdutosUseCase, ProdutosUseCase>();
 
             var config = new MapperConfiguration(cfg =>
             {
