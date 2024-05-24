@@ -1,9 +1,11 @@
-﻿using Domain.Entities;
+﻿using Application.DTOs;
+using Domain.Entities;
 
 namespace Application.UseCase
 {
     public interface IPedidoUseCase
     {
-        Task<Pedido> Inserir(Pedido pedido);
+        Task<PedidoDto> Inserir(CadastrarPedidoDto pedidoDto);
+        Task<IEnumerable<PedidoDto>> Listar();
     }
 }

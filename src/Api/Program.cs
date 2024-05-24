@@ -19,6 +19,8 @@ builder.Services.AddApplicationService();
 builder.Services.AddDbContext<TechChallengeContext>(
     options => options.UseNpgsql(builder.Configuration.GetConnectionString("Database")));
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

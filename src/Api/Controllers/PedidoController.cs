@@ -1,4 +1,5 @@
-﻿using Application.UseCase;
+﻿using Application.DTOs;
+using Application.UseCase;
 using Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,11 +17,15 @@ namespace Api.Controllers
         }        
 
         [HttpPost]
-        public async Task<IActionResult> Cadastrar(Pedido pedido)
+        public async Task<IActionResult> Inserir(CadastrarPedidoDto pedidoDto)
         {
-            await _pedidoUseCase.Inserir(pedido);
+            return Ok(await _pedidoUseCase.Inserir(pedidoDto));
+        }
 
-            return Ok();
+        [HttpGet]
+        public async Task<IActionResult> Listar()
+        {          
+            return Ok(await _pedidoUseCase.Listar());
         }
     }
 }

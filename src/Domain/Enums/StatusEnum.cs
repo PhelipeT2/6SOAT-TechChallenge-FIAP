@@ -2,6 +2,7 @@
 {
     public enum StatusEnum
     {
+        Pendente = 0,
         Recebido,
         EmPreparacao,
         Pronto,
