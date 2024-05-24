@@ -23,6 +23,11 @@ namespace Infra.Data.Repositories
             _context.Pedido.Add(pedido);
             await _context.SaveChangesAsync();
             return pedido;
-        }        
+        }
+
+        public async Task<List<Pedido>> ListarPedidos()
+        {
+            return await _context.Pedido.Include(x=> x.Produtos).ToListAsync();
+        }
     }
 }
