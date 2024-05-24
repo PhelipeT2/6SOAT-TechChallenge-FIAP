@@ -1,9 +1,7 @@
 ﻿namespace Application.DTOs
 {
-    public class PedidoProdutoDto
+    public class PedidoProdutoDto : PedidoProdutoBaseDto
     {
-        public long ProdutoId { get; set; }
-        public int Quantidade { get; set; }
-        public string Observacao { get; set; }
+        public string Nome { get; set; }
     }
 }

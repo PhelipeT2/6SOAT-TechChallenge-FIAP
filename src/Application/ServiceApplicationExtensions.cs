@@ -17,8 +17,11 @@ namespace Application
 
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<PedidoProdutoDto, PedidoProduto>().ReverseMap();
-                cfg.CreateMap<PedidoDto, Pedido>().ReverseMap();                     
+                cfg.CreateMap<PedidoProdutoBaseDto, PedidoProduto>().ReverseMap();
+                cfg.CreateMap<PedidoProdutoDto, PedidoProduto>().ReverseMap()
+                        .ForMember(x => x.Nome, opt => opt.MapFrom(u => u.Produto.Descricao));
+                cfg.CreateMap<PedidoDto, Pedido>().ReverseMap()
+                        .ForMember(x => x.Status, opt => opt.MapFrom(u => u.Status.ToString()));                     
             });
 
             IMapper mapper = config.CreateMapper();

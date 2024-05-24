@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities
+﻿using System;
+
+namespace Domain.Entities
 {
     public class PedidoProduto
     {
@@ -10,7 +12,7 @@
         {
             ProdutoId = produtoId;
             Produto = produto;
-            Quantidade = quantidade;
+            Quantidade = quantidade > 0 ? quantidade : 1;
             Observacao = observacao;    
         }
         public Pedido Pedido { get; private set; }

@@ -27,7 +27,7 @@ namespace Infra.Data.Repositories
 
         public async Task<List<Pedido>> ListarPedidos()
         {
-            return await _context.Pedido.Include(x=> x.Produtos).ToListAsync();
+            return await _context.Pedido.Include(x=> x.Produtos).ThenInclude(x => x.Produto).ToListAsync();
         }
     }
 }
