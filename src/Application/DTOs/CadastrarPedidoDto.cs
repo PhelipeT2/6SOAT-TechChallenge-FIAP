@@ -3,6 +3,6 @@
     public class CadastrarPedidoDto
     {
         public long? ClienteId { get; set; }
-        public virtual ICollection<PedidoProdutoDto> Produtos { get; set; }
+        public virtual ICollection<PedidoProdutoBaseDto> Produtos { get; set; }
     }
 }

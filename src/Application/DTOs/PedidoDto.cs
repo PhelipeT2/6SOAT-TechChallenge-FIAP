@@ -8,7 +8,7 @@ namespace Application.DTOs
         public DateTime DataCriacao { get; set; }       
         public long? ClienteId { get; set; }
         public decimal ValorTotal { get; set; }
-        public StatusEnum Status { get; set; }
+        public string Status { get; set; }
         public virtual ICollection<PedidoProdutoDto> Produtos { get; set; }
     }
 }
