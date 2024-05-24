@@ -5,7 +5,7 @@ namespace Application.UseCase
 {
     public interface IPedidoUseCase
     {
-        Task<PedidoDto> Inserir(PedidoDto pedidoDto);
+        Task<PedidoDto> Inserir(CadastrarPedidoDto pedidoDto);
         Task<IEnumerable<PedidoDto>> Listar();
     }
 }

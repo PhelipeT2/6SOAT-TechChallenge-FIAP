@@ -10,7 +10,7 @@ namespace Domain.Entities
         }
         public Pedido(long? clienteId, ICollection<PedidoProduto> pedidoProdutos)
         {
-            ClienteId = clienteId;
+            ClienteId = clienteId > 0 ? clienteId : null;
             DataCriacao = DateTime.Now;
             Status = StatusEnum.Pendente;
             Produtos = pedidoProdutos;

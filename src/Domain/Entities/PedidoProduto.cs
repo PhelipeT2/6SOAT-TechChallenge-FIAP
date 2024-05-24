@@ -6,13 +6,13 @@
         {
             
         }
-        public PedidoProduto(long produtoId, int quantidade, string observacao)
+        public PedidoProduto(long produtoId, int quantidade, string observacao, Produto produto)
         {
             ProdutoId = produtoId;
+            Produto = produto;
             Quantidade = quantidade;
             Observacao = observacao;    
         }
-        public long Id { get; private set; }    
         public Pedido Pedido { get; private set; }
         public long PedidoId { get; private set; }
         public Produto Produto { get; private set; }

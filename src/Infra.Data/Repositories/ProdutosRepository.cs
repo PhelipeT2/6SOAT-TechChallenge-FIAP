@@ -36,6 +36,7 @@ namespace Infra.Data.Repositories
             {
                 throw new ArgumentNullException(nameof(produto));
             }
+            produto.Categoria = await _context.Categoria.FirstOrDefaultAsync(x => x.Id == produto.Categoria.Id);
             _context.Produto.Add(produto);
             await _context.SaveChangesAsync();
             return produto;

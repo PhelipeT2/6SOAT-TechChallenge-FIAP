@@ -8,17 +8,25 @@ namespace Application.UseCase
     public class PedidoUseCase : IPedidoUseCase
     {
         private readonly IPedidoRepository _repository;
+        private readonly IProdutosRepository _produtoRepository;
         private readonly IMapper _mapper;
 
-        public PedidoUseCase(IPedidoRepository repository, IMapper mapper)
+        public PedidoUseCase(IPedidoRepository repository, IProdutosRepository produtoRepository, IMapper mapper)
         {
             _repository = repository;
+            _produtoRepository = produtoRepository;
             _mapper = mapper;
         }
 
-        public async Task<PedidoDto> Inserir(PedidoDto pedidoDto)
+        public async Task<PedidoDto> Inserir(CadastrarPedidoDto pedidoDto)
         {
-            var pedidoProdutos = pedidoDto.Produtos.Select(x => new PedidoProduto(x.ProdutoId, x.Quantidade, x.Observacao)).ToList();
+            var pedidoProdutos = pedidoDto.Produtos.Select(x =>
+            {
+                var produto = _produtoRepository.ObterProdutoPorId(x.ProdutoId).GetAwaiter().GetResult();
+                return new PedidoProduto(x.ProdutoId, x.Quantidade, x.Observacao, produto);
+            })
+            .ToList();
+
             var pedido = new Pedido(pedidoDto.ClienteId, pedidoProdutos);
 
             return _mapper.Map<PedidoDto>(await _repository.Inserir(pedido));
