@@ -13,7 +13,7 @@ namespace Infra.Data.Repositories
             _context = context;
         }
         public async Task<Cliente> ObterPorCPF(string cpf) => await _context.Cliente.FirstOrDefaultAsync(x => x.Cpf.Numero == cpf);
-
+        public async Task<Cliente> ObterPorId(long id) => await _context.Cliente.FirstOrDefaultAsync(x => x.Id == id);
         public async Task<Cliente> Inserir(Cliente cliente)
         {
             if (cliente is null)

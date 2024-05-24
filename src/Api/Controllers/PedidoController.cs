@@ -19,7 +19,14 @@ namespace Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Inserir(CadastrarPedidoDto pedidoDto)
         {
-            return Ok(await _pedidoUseCase.Inserir(pedidoDto));
+            try
+            {
+                return Ok(await _pedidoUseCase.Inserir(pedidoDto));
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(new { Mensagem = ex.Message });
+            }
         }
 
         [HttpGet]

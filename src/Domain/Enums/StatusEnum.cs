@@ -1,8 +1,11 @@
-﻿namespace Domain.Enums
+﻿using System.ComponentModel;
+
+namespace Domain.Enums
 {
     public enum StatusEnum
     {
-        Pendente = 0,
+        [Description("Pagamento Pendente")]
+        PagamentoPendente = 0,
         Recebido,
         EmPreparacao,
         Pronto,

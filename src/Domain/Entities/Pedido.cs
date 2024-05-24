@@ -8,11 +8,12 @@ namespace Domain.Entities
         {
             
         }
-        public Pedido(long? clienteId, ICollection<PedidoProduto> pedidoProdutos)
+        public Pedido(Cliente cliente, ICollection<PedidoProduto> pedidoProdutos)
         {
-            ClienteId = clienteId > 0 ? clienteId : null;
+            Cliente = cliente;
+            ClienteId = Cliente?.Id;
             DataCriacao = DateTime.Now;
-            Status = StatusEnum.Pendente;
+            Status = StatusEnum.PagamentoPendente;
             Produtos = pedidoProdutos;
             ValorTotal = pedidoProdutos.Sum(x => x.Quantidade * x.Produto.Valor);
         }
