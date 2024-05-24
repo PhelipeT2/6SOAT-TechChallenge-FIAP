@@ -8,7 +8,7 @@ namespace Domain.Entities
         {
             
         }
-        public Pedido(Cliente cliente, ICollection<PedidoProduto> pedidoProdutos)
+        public Pedido(Cliente cliente, ICollection<PedidoProduto> pedidoProdutos, bool viagem = false)
         {
             Cliente = cliente;
             ClienteId = Cliente?.Id;
@@ -16,10 +16,11 @@ namespace Domain.Entities
             Status = StatusEnum.PagamentoPendente;
             Produtos = pedidoProdutos;
             ValorTotal = pedidoProdutos.Sum(x => x.Quantidade * x.Produto.Valor);
+            Viagem = viagem;
         }
-
-       
+        public void AtualizarStatus(StatusEnum status) => Status = status;
         public long Id { get; private set; }
+        public bool Viagem { get; private set; }
         public DateTime DataCriacao { get; private set; }
         public Cliente? Cliente { get; private set; }
         public long? ClienteId { get; private set; }

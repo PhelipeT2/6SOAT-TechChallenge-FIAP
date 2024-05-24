@@ -7,8 +7,10 @@ namespace Domain.Enums
         [Description("Pagamento Pendente")]
         PagamentoPendente = 0,
         Recebido,
+        [Description("Em Preparação")]
         EmPreparacao,
         Pronto,
-        Finalizado
+        Finalizado,
+        Cancelado
     }
 }

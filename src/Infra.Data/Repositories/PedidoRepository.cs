@@ -21,13 +21,24 @@ namespace Infra.Data.Repositories
             }
 
             _context.Pedido.Add(pedido);
+
             await _context.SaveChangesAsync();
+
+            return pedido;
+        }
+        public virtual async Task<Pedido> Atualizar(Pedido pedido)
+        {
+            var entry = _context.Entry(pedido);
+
+            _context.Pedido.Update(entry.Entity);
+
+            await _context.SaveChangesAsync();
+
             return pedido;
         }
 
-        public async Task<List<Pedido>> ListarPedidos()
-        {
-            return await _context.Pedido.Include(x=> x.Produtos).ThenInclude(x => x.Produto).ToListAsync();
-        }
+        public async Task<List<Pedido>> ListarPedidos() => await _context.Pedido.Include(x => x.Cliente).Include(x=> x.Produtos).ThenInclude(x => x.Produto).ToListAsync();
+        public async Task<Pedido> ObterPorId(long id) => await _context.Pedido.Include(x => x.Cliente).Include(x => x.Produtos).ThenInclude(x => x.Produto).FirstOrDefaultAsync(x => x.Id == id);
+
     }
 }

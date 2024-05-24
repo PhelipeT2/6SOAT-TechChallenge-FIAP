@@ -1,7 +1,9 @@
 ﻿using Application.DTOs;
 using AutoMapper;
 using Domain.Entities;
+using Domain.Enums;
 using Domain.Repositories;
+using System;
 
 namespace Application.UseCase
 {
@@ -20,6 +22,32 @@ namespace Application.UseCase
             _mapper = mapper;
         }
 
+        public async Task<PedidoDto> EnviarPagamento(long id)
+        {
+            var pedido = await _repository.ObterPorId(id);
+
+            if(pedido is null) throw new Exception($"PedidoId {id} inválido");
+
+            pedido.AtualizarStatus(StatusEnum.Recebido);
+
+            return _mapper.Map<PedidoDto>(await _repository.Atualizar(pedido));
+        }
+
+        public async Task<PedidoDto> AtualizarStatus(long id, StatusEnum status)
+        {
+            var pedido = await _repository.ObterPorId(id);
+
+            if (pedido is null) throw new Exception($"PedidoId {id} inválido");
+
+            if (pedido.Status > status) throw new Exception($"Status não pode retroceder");
+
+            if (!Enum.IsDefined(typeof(StatusEnum), status)) throw new Exception($"Status {status} inválido");
+
+            pedido.AtualizarStatus(status);
+
+            return _mapper.Map<PedidoDto>(await _repository.Atualizar(pedido));
+        }
+
         public async Task<PedidoDto> Inserir(CadastrarPedidoDto pedidoDto)
         {
             Cliente cliente = null;
@@ -29,8 +57,7 @@ namespace Application.UseCase
                 cliente = await _clienteRepository.ObterPorId(pedidoDto.ClienteId.Value);
                 
                 if(cliente == null) throw new Exception("Cliente inválido");
-            }
-                
+            }               
 
             var pedidoProdutos = pedidoDto.Produtos.Select(x =>
             {
@@ -42,7 +69,7 @@ namespace Application.UseCase
             })
             .ToList();
 
-            var pedido = new Pedido(cliente, pedidoProdutos);
+            var pedido = new Pedido(cliente, pedidoProdutos, pedidoDto.Viagem);
 
             return _mapper.Map<PedidoDto>(await _repository.Inserir(pedido));
         }
