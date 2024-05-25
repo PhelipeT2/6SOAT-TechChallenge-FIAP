@@ -10,7 +10,7 @@ Para iniciar o Projeto, é necessário clonar o projeto do GitHub num diretório
 
 ```shell
 cd "diretorio de sua preferencia"
-git clone https://github.com/luiizmurdoki/Heropedia
+git clone https://github.com/PhelipeT2/6SOAT-TechChallenge-FIAP.git
 ```
 
 ## Tecnologias
