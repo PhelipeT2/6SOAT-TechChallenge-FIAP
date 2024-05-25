@@ -46,9 +46,14 @@ namespace Infra.Data.Repositories
         public async Task<Produto> AtualizarProdutos(Produto produto)
         {
             var produtoDb = _context.Produto.Find(produto.Id);
-            produtoDb.Valor = 
+            var categoria = await _context.Categoria.FirstOrDefaultAsync(x => x.Id == produto.Categoria.Id);
 
-                
+            produtoDb.Valor = produto.Valor;
+            produtoDb.Descricao = produto.Descricao;
+            produtoDb.Categoria = categoria;
+            produtoDb.Categoria.Id = produto.Categoria.Id;
+            produtoDb.Categoria.Descricao = produto.Categoria.Descricao;
+             
             _context.Produto.Update(produtoDb);
             await _context.SaveChangesAsync();
             return produto;
