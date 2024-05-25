@@ -27,6 +27,11 @@ namespace Application.UseCase.Produtos
             return await _produtosRepository.ListarProdutos();
         }
 
+        public async Task<List<Produto>> ListarPorCategoria(long idCategoria)
+        {
+            return await _produtosRepository.ListarPorCategoria(idCategoria);
+        }
+
         public async Task<Produto> Cadastrar(Produto produto)
         {
             return await _produtosRepository.InserirProdutos(produto);

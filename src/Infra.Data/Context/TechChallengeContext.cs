@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using Domain.Enums;
 
 namespace Infra.Data.Context
 {
@@ -23,10 +24,10 @@ namespace Infra.Data.Context
 
             modelBuilder.Entity<Categoria>()
                .HasData(
-                    new Categoria { Id = 1, Descricao = "Lanche" },
-                    new Categoria { Id = 2, Descricao = "Acompanhamento" },
-                    new Categoria { Id = 3, Descricao = "Bebida" },
-                    new Categoria { Id = 4, Descricao = "Sobremesa" }
+                    new Categoria { Id = CategoriaEnum.Lanche.GetHashCode(), Descricao = nameof(CategoriaEnum.Lanche) },
+                    new Categoria { Id = CategoriaEnum.Acompanhamento.GetHashCode(), Descricao = nameof(CategoriaEnum.Acompanhamento) },
+                    new Categoria { Id = CategoriaEnum.Bebida.GetHashCode(), Descricao = nameof(CategoriaEnum.Bebida) },
+                    new Categoria { Id = CategoriaEnum.Sobremesa.GetHashCode(), Descricao = nameof(CategoriaEnum.Sobremesa) }
                );
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());         
