@@ -1,7 +1,5 @@
-# 6SOAT-TechChallenge-FIAP
-<<<<<<< HEAD
-Repositório para fase 1 - 6SOAT: Tech Challenge - FIAP
-=======
+# Repositório para fase 1 - 6SOAT: Tech Challenge - FIAP
+
 O principal objetivo deste projeto foi desenvolver uma solucao para gerenciar o cadastro, pedidos, produtos e fila de entrega, sendo um sistema de controle de pedidos.
 
 # Preview
@@ -40,4 +38,3 @@ Aqui estao as tecnologias usadas nos projeto.
 
  
 Obrigado pela visita e bom codigo!
->>>>>>> 2716efdc0d315f54300aab1cd6ab317c9f809d7e
