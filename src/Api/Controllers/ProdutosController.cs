@@ -29,9 +29,9 @@ namespace Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> ListarProdutosId(long id)
         {
-            var produtos = await _produtosUseCase.Obter(id);
+            var produtosCategoria = await _produtosUseCase.ListarPorCategoria(id);
 
-            return Ok(produtos);
+            return Ok(produtosCategoria);
         }
 
         // GET api/<ProdutosController>/5
