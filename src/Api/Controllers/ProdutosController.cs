@@ -16,7 +16,7 @@ namespace Api.Controllers
             _produtosUseCase = produtosUseCase;
         }
 
-        // GET: api/<ProdutosController>
+        
         [HttpGet]
         public async Task<IActionResult> ListarProdutos()
         {
@@ -25,8 +25,8 @@ namespace Api.Controllers
             return Ok(produtos);
         }
 
-        // GET api/<ProdutosController>/5
-        [HttpGet("{id}")]
+        
+        [HttpGet("categoria-produtos/{id}")]
         public async Task<IActionResult> ListarProdutosId(long id)
         {
             var produtosCategoria = await _produtosUseCase.ListarPorCategoria(id);
@@ -34,14 +34,7 @@ namespace Api.Controllers
             return Ok(produtosCategoria);
         }
 
-        // GET api/<ProdutosController>/5
-        [HttpGet("categoria-produtos/{id}")]
-        public string GetCategoriaProdutos(int id)
-        {
-            return "value";
-        }
-
-        //POST api/<ProdutosController>
+        
         [HttpPost]
         public async Task<IActionResult> Cadastrar(Produto produto)
         {
@@ -50,7 +43,7 @@ namespace Api.Controllers
             return Ok();
         }
 
-        // PUT api/<ProdutosController>/5
+        
         [HttpPatch("{id}")]
         public async Task<IActionResult> Patch([FromBody] Produto produto)
         {
@@ -59,7 +52,7 @@ namespace Api.Controllers
             return Ok();
         }
 
-        // DELETE api/<ProdutosController>/5
+        
         [HttpDelete("{id}")]
         public async Task<IActionResult> Remover(long id)
         {
