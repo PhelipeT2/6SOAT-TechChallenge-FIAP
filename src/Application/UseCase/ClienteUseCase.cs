@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Repositories;
 using Domain.Ports;
 using Domain.ValueObjects;
 
