@@ -25,5 +25,15 @@ namespace Infra.Data.Repositories
             await _context.SaveChangesAsync();
             return cliente;
         }
+
+        public bool ValidaCliente(string cpf)
+        {
+            if (cpf is not null)
+            { 
+                return _context.Cliente.Any(u => u.Cpf.Numero == cpf);
+            }
+
+            throw new ArgumentNullException(nameof(cpf));
+        }
     }
 }
