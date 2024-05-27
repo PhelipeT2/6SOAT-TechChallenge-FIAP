@@ -12,7 +12,16 @@ namespace Application.UseCase
         }
         public async Task<Cliente> Cadastrar(Cliente cliente)
         {
-            return await _repository.Inserir(cliente);
+
+            bool validaClienteExiste = _repository.ValidaCliente(cliente.Cpf.Numero);
+
+            if (!validaClienteExiste)
+            {
+                return await _repository.Inserir(cliente);
+            }
+
+            throw new ArgumentNullException("Cliente já cadastrado");
+
         }
 
         public async Task<Cliente> Obter(string cpf)
