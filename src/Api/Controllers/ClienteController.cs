@@ -1,5 +1,6 @@
 ﻿using Application.UseCase;
 using Domain.Entities;
+using Domain.ValueObjects;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
@@ -17,17 +18,30 @@ namespace Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Obter(string cpf)
         {
-            var cliente = await _clienteUseCase.Obter(cpf);
+            var validaCpf = new CPF(cpf);
 
-            return Ok(cliente);
+            if (validaCpf.EhValido())
+            {
+                var cliente = await _clienteUseCase.Obter(cpf);
+                return Ok(cliente);
+            }
+            return BadRequest("CPF Inválido");
+
         }
 
         [HttpPost]
         public async Task<IActionResult> Cadastrar(Cliente cliente)
         {
-            await _clienteUseCase.Cadastrar(cliente);
+            string cpf = cliente.Cpf.Numero;
+            var validaCpf = new CPF(cpf);
 
-            return Ok();
+            if (validaCpf.EhValido())
+            {
+                await _clienteUseCase.Cadastrar(cliente);
+                return Ok();
+            }
+
+            return BadRequest("CPF Inválido");
         }
     }
 }
