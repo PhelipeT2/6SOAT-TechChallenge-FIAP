@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Domain.Entities;
+using System.ComponentModel;
 
 namespace Domain.Enums
 {
@@ -6,11 +7,15 @@ namespace Domain.Enums
     {
         [Description("Pagamento Pendente")]
         PagamentoPendente = 0,
-        Recebido,
+        [Description("Recebido")]
+        Recebido = 1,
         [Description("Em Preparação")]
-        EmPreparacao,
-        Pronto,
-        Finalizado,
-        Cancelado
+        EmPreparacao = 2,
+        [Description("Pronto")]
+        Pronto = 3,
+        [Description("Finalizado")]
+        Finalizado = 4,
+        [Description("Cancelado")]
+        Cancelado = 5
     }
 }
