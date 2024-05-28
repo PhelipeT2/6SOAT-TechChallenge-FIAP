@@ -52,7 +52,8 @@ Enum Categoria:
 
 ## Schemas
 Os exemplos de payload das APIs estão disponibilizados na aba de Schemas do Swagger para realizar as chamadas.
-![Schemas](https://github.com/PhelipeT2/6SOAT-TechChallenge-FIAP/blob/api-produtos/images/SchemasApi.png)
+![Schemas](https://github.com/PhelipeT2/6SOAT-TechChallenge-FIAP/blob/main/images/SchemasApi.png)
+
 
 ## Tecnologias
 
